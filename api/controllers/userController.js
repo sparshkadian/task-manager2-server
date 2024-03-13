@@ -3,9 +3,9 @@ import User from '../models/userModel.js';
 import bcryptjs from 'bcryptjs';
 
 export const deleteUser = async (req, res, next) => {
-  if (req.user._id !== req.params.id) {
-    return next(new AppError('You can only delete your own account', 401));
-  }
+  // if (req.user._id !== req.params.id) {
+  //   return next(new AppError('You can only delete your own account', 401));
+  // }
   try {
     await User.findByIdAndDelete({ _id: req.params.id });
     res.clearCookie('access_token');
@@ -21,9 +21,9 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const updateUser = async (req, res, next) => {
-  if (req.user._id !== req.params.id) {
-    return next(new AppError('You can only update your own account', 401));
-  }
+  // if (req.user._id !== req.params.id) {
+  //   return next(new AppError('You can only update your own account', 401));
+  // }
   try {
     const updatedUser = await User.findByIdAndUpdate(
       { _id: req.params.id },
@@ -47,9 +47,9 @@ export const updateUser = async (req, res, next) => {
 };
 
 export const changePassword = async (req, res, next) => {
-  if (req.user._id !== req.params.id) {
-    return next(new AppError('You can only change you own password', 401));
-  }
+  // if (req.user._id !== req.params.id) {
+  //   return next(new AppError('You can only change you own password', 401));
+  // }
   const { currentPassword, newPassword, confirmPassword } = req.body;
 
   const user = await User.findOne({ _id: req.params.id });

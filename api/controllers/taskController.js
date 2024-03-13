@@ -3,9 +3,9 @@ import Task from '../models/taskModel.js';
 
 export const getAllTasks = async (req, res) => {
   try {
-    if (!req.user._id) {
-      return next(new AppError('You must be logged in to see your tasks'), 401);
-    }
+    // if (!req.user._id) {
+    //   return next(new AppError('You must be logged in to see your tasks'), 401);
+    // }
     const tasks = await Task.find({ userId: req.user._id });
     res.status(200).json({
       status: 'success',
@@ -17,9 +17,9 @@ export const getAllTasks = async (req, res) => {
 };
 
 export const createTask = async (req, res, next) => {
-  if (!req.user._id) {
-    return next(new AppError('You must be logged in to create a task'), 401);
-  }
+  // if (!req.user._id) {
+  //   return next(new AppError('You must be logged in to create a task'), 401);
+  // }
   try {
     req.body.userId = req.user._id;
 
@@ -34,9 +34,9 @@ export const createTask = async (req, res, next) => {
 };
 
 export const deleteTask = async (req, res, next) => {
-  if (!req.user._id) {
-    return next(new AppError('You must be logged in to delete a task'), 401);
-  }
+  // if (!req.user._id) {
+  //   return next(new AppError('You must be logged in to delete a task'), 401);
+  // }
   await Task.findByIdAndDelete({ _id: req.params.id });
 
   res.status(200).json({
@@ -51,9 +51,9 @@ export const deleteTask = async (req, res, next) => {
 };
 
 export const updateTask = async (req, res, next) => {
-  if (!req.user._id) {
-    return next(new AppError('You must be logged in to update a task'), 401);
-  }
+  // if (!req.user._id) {
+  //   return next(new AppError('You must be logged in to update a task'), 401);
+  // }
   await Task.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
   });
