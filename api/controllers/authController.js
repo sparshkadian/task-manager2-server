@@ -12,6 +12,7 @@ const generateToken = (user, res) => {
       httpOnly: true,
       sameSite: 'None',
       secure: true,
+      domain: '.task-manager2-client.vercel.app',
       path: '/',
     })
     .status(200)
