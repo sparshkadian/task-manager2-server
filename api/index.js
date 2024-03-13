@@ -8,6 +8,7 @@ import taskRoutes from './routes/taskRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
 import AppError from './utils/AppError.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 dotenv.config({ path: './.env' });
 
