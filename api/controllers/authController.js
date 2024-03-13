@@ -8,7 +8,11 @@ const generateToken = (user, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY);
 
   res
-    .cookie('access_token', token, { httpOnly: true, secure: true })
+    .cookie('access_token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'None',
+    })
     .status(200)
     .json({
       status: 'success',
