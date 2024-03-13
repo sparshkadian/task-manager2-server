@@ -10,10 +10,7 @@ const generateToken = (user, res) => {
   res
     .cookie('access_token', token, {
       httpOnly: true,
-      sameSite: 'None',
       secure: true,
-      domain: '.task-manager2-client.vercel.app',
-      path: '/',
     })
     .status(200)
     .json({
