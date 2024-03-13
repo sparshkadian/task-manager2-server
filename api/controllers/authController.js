@@ -21,17 +21,18 @@ const generateToken = (user, res) => {
 };
 
 export const verifyUserToken = (req, res, next) => {
-  const token = req.cookies.access_token;
-  if (!token) {
-    return next(new AppError('Unauthorized', 401));
-  }
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    return next(new AppError('Invalid token', 401));
-  }
+  // const token = req.cookies.access_token;
+  // if (!token) {
+  //   return next(new AppError('Unauthorized', 401));
+  // }
+  // try {
+  //   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  //   req.user = decoded;
+  //   next();
+  // } catch (err) {
+  //   return next(new AppError('Invalid token', 401));
+  // }
+  next();
 };
 
 export const signup = async (req, res, next) => {
