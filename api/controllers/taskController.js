@@ -6,7 +6,7 @@ export const getAllTasks = async (req, res) => {
     // if (!req.user._id) {
     //   return next(new AppError('You must be logged in to see your tasks'), 401);
     // }
-    const tasks = await Task.find({ userId: req.user._id });
+    const tasks = await Task.find({ userId: req.params.id });
     res.status(200).json({
       status: 'success',
       tasks,
@@ -21,7 +21,7 @@ export const createTask = async (req, res, next) => {
   //   return next(new AppError('You must be logged in to create a task'), 401);
   // }
   try {
-    req.body.userId = req.user._id;
+    req.body.userId = req.params.id;
 
     const newTask = await Task.create(req.body);
     res.status(200).json({
