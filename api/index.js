@@ -8,27 +8,19 @@ import taskRoutes from './routes/taskRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
 import AppError from './utils/AppError.js';
 import cookieParser from 'cookie-parser';
-import path from 'path';
 
 dotenv.config({ path: './.env' });
-
-// const __dirname = path.resolve();
 
 const app = express();
 
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(cors());
 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/task', taskRoutes);
-
-// app.use(express.static(path.join(__dirname, '/client/dist')));
-
-// app.use('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-// });
 
 app.all('*', (req, _, next) => {
   next(
