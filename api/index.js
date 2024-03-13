@@ -12,12 +12,8 @@ import cors from 'cors';
 
 dotenv.config({ path: './.env' });
 
-const corsOptions = {
-  origin: 'https://task-manager2-client.vercel.app/',
-};
-
 const app = express();
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use(morgan('dev'));
