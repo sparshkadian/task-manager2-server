@@ -7,17 +7,10 @@ const generateToken = (user, res) => {
   const { password, ...rest } = user._doc;
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY);
 
-  res
-    .cookie('access_token', token, {
-      httpOnly: true,
-      secure: true,
-      domain: 'https://task-manager2-client.vercel.app/',
-    })
-    .status(200)
-    .json({
-      status: 'success',
-      userInfo: rest,
-    });
+  res.cookie('access_token', token).status(200).json({
+    status: 'success',
+    userInfo: rest,
+  });
 };
 
 export const verifyUserToken = (req, res, next) => {
