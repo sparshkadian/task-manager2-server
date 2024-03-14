@@ -54,12 +54,13 @@ export const updateTask = async (req, res, next) => {
   // if (!req.user._id) {
   //   return next(new AppError('You must be logged in to update a task'), 401);
   // }
-  await Task.findByIdAndUpdate(req.params.id, req.body, {
+  const { userId } = await Task.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
   });
 
   // After updating send back all tasks
-  const tasks = await Task.find({ userId: req.user._id });
+  const tasks = await Task.find({ userId });
+  console.log(tasks);
 
   res.status(200).json({
     status: 'success',
